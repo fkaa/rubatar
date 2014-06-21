@@ -7,8 +7,8 @@ require 'rubatar'
 require 'optparse'
 
 OptionParser.new do |o|
-  o.on('-w WIDTH') { |w| $width = w }
-  o.on('-h HEIGHT') { |h| $height = h }
+  o.on('-w WIDTH') { |w| $width = w.to_i }
+  o.on('-h HEIGHT') { |h| $height = h.to_i }
   o.on('-o OUTPUT') { |output| $output = output }
   o.on('--help') { puts o; exit }
   o.parse!
