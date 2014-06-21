@@ -1,6 +1,6 @@
 # Rubatar
 
-TODO: Write a gem description
+Generates random 5x5 avatars.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    rubatar -w128 -h128 -oavatar.png
 
 ## Contributing
 
