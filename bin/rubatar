@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+$:.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
+
+require 'rubatar'
+require 'optparse'
+
+OptionParser.new do |o|
+  o.on('-w WIDTH') { |w| $width = w }
+  o.on('-h HEIGHT') { |h| $height = h }
+  o.on('-o OUTPUT') { |output| $output = output }
+  o.on('--help') { puts o; exit }
+  o.parse!
+end
+
+avatar = Rubatar::Avatar.new($width, $height, $output)
+avatar.generate
+avatar.save
