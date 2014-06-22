@@ -6,14 +6,28 @@ $:.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'rubatar'
 require 'optparse'
 
+options = {}
+
 OptionParser.new do |o|
-  o.on('-w WIDTH') { |w| $width = w.to_i }
-  o.on('-h HEIGHT') { |h| $height = h.to_i }
-  o.on('-o OUTPUT') { |output| $output = output }
-  o.on('--help') { puts o; exit }
+  o.on('-s', '--size size', "the avatar\'s size in \033[33mwidth\033[0mx\033[33mheight\033[0m") { |s| 
+    width, height = s.split('x').map(&:to_i)
+    options[:width] = width
+    options[:height] = height
+  }
+  o.on('-o', '--output file', 'where to save the avatar') { |output|
+    options[:output] = output
+  }
+  o.on('-h', '--help', 'show this message') { puts o; exit }
   o.parse!
+
+  if options[:width].nil? or options[:height].nil? or options[:output].nil?
+    puts o
+    exit
+  end
 end
 
-avatar = Rubatar::Avatar.new($width, $height, $output)
+
+
+avatar = Rubatar::Avatar.new(options[:width], options[:height], options[:output])
 avatar.generate
 avatar.save

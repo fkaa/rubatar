@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-    rubatar -w128 -h128 -oavatar.png
+    rubatar --size 128x128 --output avatar.png
 
 ## Contributing
 
